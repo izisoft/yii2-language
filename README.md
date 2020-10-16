@@ -2,7 +2,8 @@
 Get & set Module, Controller, Action from DB (slugs table).
 
 1. Frontend
-- example.com/slug-url => example.com/controller/action
+- Option 1: example.com/slug-url => example.com/controller/action
+- Option 2: example.com/controller/action (origin router)
 
 2. Module (backend | api | ...)
 - Option 1: example.com/slug-url => example.com/module/controller/action
