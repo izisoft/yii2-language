@@ -15,6 +15,9 @@ class UrlManager extends \yii\web\UrlManager
     {
         parent::init();
         
+        /**
+         * Set default theme
+         */
         Yii::$app->view->theme = new \izi\theme\Theme([
             'basePath'   =>  "@app/web",
             'viewPath'   =>  "@app/views",
