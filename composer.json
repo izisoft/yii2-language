@@ -1,0 +1,37 @@
+{
+	"name" : "izisoft/yii2-router",
+	"description" : "Yii2 extention",
+	"type" : "yii2-extension",
+	"keywords" : [
+		"yii2",
+		"extension"
+	],
+	"license" : "MIT",
+	"authors" : [{
+			"name" : "A Tin",
+			"email" : "zinzinx8@gmail.com",
+			"homepage" : "https://iziweb.net",
+			"role" : "Master"
+		}, {
+			"name" : "A Xin",
+			"email" : "vantruong1898@gmail.com",
+			"homepage" : "https://iziweb.vn",
+			"role" : "Developer"
+		}
+	],
+	"minimum-stability" : "stable",
+	"support" : {
+		"source" : "https://github.com/izisoft/yii2-geoip",
+		"issues" : "https://github.com/izisoft/yii2-geoip/issues",
+		"email" : "zinzinx8@gmail.com"
+	},
+	"require" : {
+		"php" : ">=5.4.0"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"izi\\router\\" : "src"
+		}
+	},
+	"homepage" : "https://iziweb.net"
+}
