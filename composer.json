@@ -18,9 +18,7 @@
 			"homepage" : "https://iziweb.net",
 			"role" : "Developer"
 		}
-	],
-	"minimum-stability": "dev",
-	"support" : {
+	],"support" : {
 		"source" : "https://github.com/izisoft/yii2-geoip",
 		"issues" : "https://github.com/izisoft/yii2-geoip/issues",
 		"email" : "zinzinx8@gmail.com"
