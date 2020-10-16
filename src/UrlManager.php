@@ -117,8 +117,16 @@ class UrlManager extends \yii\web\UrlManager
 
     /**
      * init data from current domain
+     * => get sid/website_id/store_id from domain
      */
 
+    public function getDomainData()
+    {
+        $d = \izi\models\DomainPointer::findOne(['domain' = __DOMAIN__]);
+
+        $s = $d->getS();
+
+    }
 
 
 }
