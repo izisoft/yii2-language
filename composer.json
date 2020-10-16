@@ -36,5 +36,10 @@
 			"izi\\router\\" : "src"
 		}
 	},
-	"homepage" : "https://iziweb.net"
+	"homepage" : "https://iziweb.net",
+	"extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+		}
+	}	
 }
