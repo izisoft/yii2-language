@@ -18,14 +18,16 @@
 			"homepage" : "https://iziweb.net",
 			"role" : "Developer"
 		}
-	],"support" : {
+	],
+	"minimum-stability": "dev",
+	"support" : {
 		"source" : "https://github.com/izisoft/yii2-geoip",
 		"issues" : "https://github.com/izisoft/yii2-geoip/issues",
 		"email" : "zinzinx8@gmail.com"
 	},
 	"require" : {
 		"php" : ">=5.4.0",
-		"izisoft/yii2-theme" : "master"
+		"izisoft/yii2-theme" : "dev"
 	},
 	"autoload" : {
 		"psr-4" : {
