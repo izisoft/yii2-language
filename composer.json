@@ -26,8 +26,10 @@
 		"email" : "zinzinx8@gmail.com"
 	},
 	"require" : {
-		"php" : ">=5.4.0",
-		"izisoft/yii2-theme" : "dev"
+		"php" : ">=5.4.0"
+	},
+	"require-dev" : {
+		"izisoft/yii2-theme" : "*"
 	},
 	"autoload" : {
 		"psr-4" : {
