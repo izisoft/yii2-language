@@ -19,8 +19,8 @@
 			"role" : "Developer"
 		}
 	],"support" : {
-		"source" : "https://github.com/izisoft/yii2-geoip",
-		"issues" : "https://github.com/izisoft/yii2-geoip/issues",
+		"source" : "https://github.com/izisoft/yii2-router",
+		"issues" : "https://github.com/izisoft/yii2-router/issues",
 		"email" : "zinzinx8@gmail.com"
 	},
 	"require" : {
