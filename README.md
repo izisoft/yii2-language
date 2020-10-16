@@ -14,6 +14,6 @@ Get & set Module, Controller, Action from DB (slugs table).
 ## Slug table struct
 - url: varchar
 - router: varchar
-- add more everithing if you want (ex: controller, action, module,...)
+- add more everithing if you want (ex: controller, action, module,...) 
 
-## ---- continue... ----
+## ---- continue ----
