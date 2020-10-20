@@ -37,7 +37,7 @@ class UrlManager extends \yii\web\UrlManager
             'basePath'   =>  "@app/web",
             'viewPath'   =>  "@app/views",
         ]);
-        
+         
     }
 
     /**
@@ -89,6 +89,7 @@ class UrlManager extends \yii\web\UrlManager
         $url = preg_replace($pattern, $replacement, $url);
         $a = parse_url($url);
         $a['host'] = strtolower($a['host']);
+                 
         return [
             'FULL_URL'=>$url,
             'URL_NO_PARAM'=> $a['scheme'].'://'.$a['host'].$port.$a['path'],
@@ -97,7 +98,7 @@ class UrlManager extends \yii\web\UrlManager
             'ABSOLUTE_DOMAIN'=>$a['scheme'].'://'.$a['host'],
             'URL_QUERY'=>isset($a['query']) ? $a['query'] : '',
             'DYNAMIC_SCHEME_DOMAIN'  =>  '//'.$a['host'].$port,
-            'SITE_ADDRESS'=>Yii::$app->homeUrl,
+            'SITE_ADDRESS'=>$a['scheme'].'://'.$a['host'].$port,
             'SCHEME'=>$a['scheme'],
             'DOMAIN'=>$a['host'],
             "__DOMAIN__"=>$a['host'],
@@ -106,7 +107,7 @@ class UrlManager extends \yii\web\UrlManager
             'URL_PORT'=>$port,
             'URL_PATH'=>$a['path'],
             '__TIME__'=>time(),
-            'DS' => '/',
+            'DS' => DIRECTORY_SEPARATOR,
             'ROOT_USER'=>'root',
             'ADMIN_USER'=>'admin',
             'DEV_USER'=>'dev',
@@ -114,18 +115,103 @@ class UrlManager extends \yii\web\UrlManager
             'USER'=>'user'
         ];
     }
+    
+     
 
     /**
      * init data from current domain
      * => get sid/website_id/store_id from domain
      */
 
-    public function getDomainData()
+    public function parseDomain($domain = __DOMAIN__)
     {
-        //$d = \izi\models\DomainPointer::findOne(['domain' = __DOMAIN__]);
-
-        $s = $d->getS();
-
+        $params = [
+            __CLASS__,
+            __FUNCTION__,
+            $domain,
+            date('H')
+        ];
+        
+        $config = Yii::$app->icache->getCache($params);
+        
+        if(!YII_DEBUG && !empty($config)){
+            return $config;
+        }else{
+            
+        
+            $d = \izi\models\DomainPointer::findOne(['domain' => $domain]);
+    
+            $s = $d->getS()->one();
+            
+            if(!empty($s)){
+                $config = [
+                    'sid' => $s->id,
+                    'code' => $s->code,
+                    'is_hidden' => $d->is_hidden,
+                    'module' => $d->module,
+                    'store_id' => isset($d->store_id) ? $d->store_id : 0,
+                    'store_group_id' => isset($d->store_group_id) ? $d->store_group_id : 0,
+                    'store_website_id' => isset($d->store_website_id) ? $d->store_website_id : 0,
+                ];
+                
+                Yii::$app->icache->store($config, $params);
+                
+                
+                return $config;
+            }
+        
+        }
+    }
+    
+    
+    /**
+     * modify request
+     */
+    
+    public function beforeRequest($request)
+    {
+        // Parse domain
+        $s = $this->parseDomain();
+        
+        $DOMAIN_HIDDEN =  $domain_module = false; $domain_module_name = '';
+        if(!empty($s)){
+            
+            define ('__SID__', $s['sid']);
+        
+            define ('__SITE_NAME__', $s['code']);                                   
+            
+            if($s['module'] != "" && in_array($s['module'], $this->getModuleNames())){
+                $this->_router['module'] = $domain_module_name = $s['module'];
+                $domain_module = true;
+                
+            }
+            
+            $DOMAIN_HIDDEN = $s['is_hidden'];
+            
+        }
+        
+        //
+        defined('DOMAIN_HIDDEN') or define('DOMAIN_HIDDEN', $DOMAIN_HIDDEN);
+        defined('__DOMAIN_MODULE__') or define('__DOMAIN_MODULE__', $domain_module);
+        defined('__DOMAIN_MODULE_NAME__') or define('__DOMAIN_MODULE_NAME__', $domain_module_name);
+        
+        
+        // Parse router
+        
+        $router = array_filter(explode(DIRECTORY_SEPARATOR, trim(URL_PATH, DIRECTORY_SEPARATOR)));
+        
+        view($router,1,1);
+        
+    }
+    
+    
+    public function parseRequest($request)
+    {
+        $this->beforeRequest($request);
+        
+        $parentRequest = parent::parseRequest($request);
+        
+        return $parentRequest;
     }
 
 
