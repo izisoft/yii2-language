@@ -201,6 +201,8 @@ class UrlManager extends \yii\web\UrlManager
         $router = array_filter(explode(DIRECTORY_SEPARATOR, trim(URL_PATH, DIRECTORY_SEPARATOR)));
         
         view($router,1,1);
+
+        // Pause
         
     }
     
