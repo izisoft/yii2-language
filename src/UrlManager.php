@@ -122,11 +122,15 @@ class UrlManager extends \yii\web\UrlManager
 
     public function getDomainData()
     {
-        //$d = \izi\models\DomainPointer::findOne(['domain' = __DOMAIN__]);
+        $d = \izi\models\DomainPointer::findOne(['domain' => __DOMAIN__]);
 
         $s = $d->getS();
 
     }
 
+    public function validateUrl($url)
+    {
+
+    }    
 
 }
