@@ -125,7 +125,6 @@ class UrlManager extends \yii\web\UrlManager
 
     public function parseDomain($domain = __DOMAIN__)
     {
-<<<<<<< HEAD
         $params = [
             __CLASS__,
             __FUNCTION__,
@@ -213,17 +212,7 @@ class UrlManager extends \yii\web\UrlManager
         $parentRequest = parent::parseRequest($request);
         
         return $parentRequest;
-=======
-        $d = \izi\models\DomainPointer::findOne(['domain' => __DOMAIN__]);
-
-        $s = $d->getS();
-
->>>>>>> 44278b9814da97d00202a57c7b5817697b27445f
     }
 
-    public function validateUrl($url)
-    {
-
-    }    
 
 }
