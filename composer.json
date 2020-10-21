@@ -1,5 +1,5 @@
 {
-	"name" : "izisoft/yii2-router",
+	"name" : "izisoft/yii2-language",
 	"description" : "Yii2 extention",
 	"type" : "yii2-extension",
 	"keywords" : [
@@ -19,8 +19,8 @@
 			"role" : "Developer"
 		}
 	],"support" : {
-		"source" : "https://github.com/izisoft/yii2-router",
-		"issues" : "https://github.com/izisoft/yii2-router/issues",
+		"source" : "https://github.com/izisoft/yii2-language",
+		"issues" : "https://github.com/izisoft/yii2-language/issues",
 		"email" : "zinzinx8@gmail.com"
 	},
 	"require" : {
@@ -28,7 +28,7 @@
 	},
 	"autoload" : {
 		"psr-4" : {
-			"izi\\router\\" : "src"
+			"izi\\language\\" : "src"
 		}
 	},
 	"homepage" : "https://iziweb.net"	
