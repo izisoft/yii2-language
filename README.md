@@ -17,3 +17,4 @@ Get & set Module, Controller, Action from DB (slugs table).
 - add more everithing if you want (ex: controller, action, module,...) 
 
 ## ---- continue ----
+### updating
