@@ -200,12 +200,110 @@ class UrlManager extends \yii\web\UrlManager
         
         $router = array_filter(explode(DIRECTORY_SEPARATOR, trim(URL_PATH, DIRECTORY_SEPARATOR)));
         
-        view($router,1,1);
+        if(!empty($router)){
+            if(!isset($this->_router['module']) && in_array($router[0], $this->getModuleNames())){
+                $this->_router['module'] = array_shift($router);
+            }
+            
+            if(!empty($router)){
+                foreach ($router as $v) {
+                    
+                    if(isset(Yii::$app->view->specialPage) && !(DOMAIN_LAYOUT != "" && in_array(DOMAIN_LAYOUT, Yii::$app->view->specialPage))
+                        && in_array($v, Yii::$app->view->specialPage)){
+                            define('SPECIAL_LAYOUT', array_shift($router));
+                    }
+                    
+                    break;
+                }
+                foreach ($router as $k=>$v) {
+                    switch ($k) {
+                        case 0: // controller
+                            $this->_router['controller'] = $v;
+                            break;
+                        case 1: // action
+                            $this->_router['action'] = $v;
+                            break;
+                            
+                        default:
+                            $this->_router["param" . ($k-1)] = $v;
+                            break;
+                    }
+                }
+            }
+            
+        }
+        
+        if(isset($this->_router['module']) && $this->_router['module'] != ""){
+        
+            $this->addRules([                
+                '/'=>$this->_router['module'] . "/default/index",
+                '<module:\w+>/<alias:login|logout|forgot>'=>'<module>/default/<alias>',
+            ]);
+            
+            // set rule for module
+            define('__IS_MODULE__',true);
+            
+            $method_name = "parse". ucfirst($this->_router['module'])."Request";
+            
+            defined('__MODULE_NAME__') || define('__MODULE_NAME__', $this->_router['module']);
+            
+            defined('__DOMAIN_ADMIN__') || define('__DOMAIN_ADMIN__',__DOMAIN_MODULE__);
+            
+            defined('MODULE_ADDRESS') || define('MODULE_ADDRESS', __DOMAIN_MODULE__ ? cu(['/']) : cu(['/' . __MODULE_NAME__]));
+            
+            
+            
+            Yii::$app->user->loginUrl = [
+                
+                (defined('__DOMAIN_MODULE__') && __DOMAIN_MODULE__ ? '' : __MODULE_NAME__) . '/login'
+                
+            ];
+            $request->router = $this->_router;
+            $moduleClass = "\\app\\modules\\{$this->_router['module']}\\Module";
+            
+            
+            if(method_exists($moduleClass, 'parseRequest')){
+                $moduleClass::parseRequest($request, $this);
+                
+                
+            }else{
+                
+                if(method_exists($this, $method_name)){
+                    $this->$method_name($request);
+                }
+            }
+            
+            
+            //  Setup language
+            $this->setLanguage($this->_slug);
+            // Setup template
+            $this->setTemplate($this->_router);
+        
+        }else{
+            $this->addRules([
+                '/'=>Yii::$app->defaultRoute . "/index",
+            ]);
+            
+            // set rule for frontend
+            define('__IS_MODULE__',false);
+            defined('__MODULE_NAME__') || define('__MODULE_NAME__', 'app-frontend');
+            
+            $this->parseFrontendRequest($request);
+            
+            
+        }
+        
+         
 
         // Pause
         
     }
-    
+            
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \yii\web\UrlManager::parseRequest()
+     */
     
     public function parseRequest($request)
     {
@@ -217,4 +315,57 @@ class UrlManager extends \yii\web\UrlManager
     }
 
 
+    /**
+     * frontend request
+     */
+    public function parseFrontendRequest($request)
+    {
+        
+        $is_validate_url = false;
+        
+        $fp = dirname(Yii::$app->view->theme->getPath('')) . DIRECTORY_SEPARATOR . '/rule.custom.php';
+        
+        if(file_exists($fp)){
+            
+            $rule = require_once $fp;
+            
+            if(!empty($rule)){
+                $this->addRules($rule);
+            }
+            
+        }
+        
+        
+        // parse slug
+        
+        $detail_url = '';
+        
+        $isDetail = false;
+        if(!empty($this->_router)){
+            foreach ($this->_router as $k=>$v) {
+                
+                $detail_url = $v;
+                
+                if($is_validate_url) break;
+                
+                $br = false;
+                switch ($k) {
+                    case 'controller':
+                        
+                        
+                        break;
+                }
+            }
+        }
+        
+        view($this->_router,1,1);
+        
+        
+    }
+    
+    
+    
+    
+    
+    
 }
