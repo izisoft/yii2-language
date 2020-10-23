@@ -19,7 +19,11 @@ class Language extends \yii\base\Component
     
     public function getDefault(){
         
+<<<<<<< HEAD
         $l = \izi\models\SiteConfigs::getConfigs($this->identity, null, __SID__);
+=======
+        $l = \app\models\SiteConfigs::getConfigs($this->identity, null, __SID__);
+>>>>>>> release/1.0
         
         if(!empty($l)){
             foreach ($l as $v){
@@ -36,7 +40,11 @@ class Language extends \yii\base\Component
 	*/
 	
 	public function getItem($code, $fetchArray = false){
+<<<<<<< HEAD
 	    $l = \izi\models\SiteConfigs::getConfigs($this->identity, null, __SID__);
+=======
+		$l = \app\models\SiteConfigs::getConfigs($this->identity, null, __SID__);
+>>>>>>> release/1.0
  
 		
         if(!empty($l)){
@@ -126,7 +134,11 @@ class Language extends \yii\base\Component
 	 * get all defined language for single site
 	 */
 	public function getDefinedLanguage(){ 
+<<<<<<< HEAD
 	    return \izi\models\SiteConfigs::getConfigs($this->identity, null, __SID__, false);
+=======
+	    return \app\models\SiteConfigs::getConfigs($this->identity, null, __SID__, false);
+>>>>>>> release/1.0
 	}
     
 	/**
@@ -159,7 +171,11 @@ class Language extends \yii\base\Component
 	        ];
 	        
 	        
+<<<<<<< HEAD
 	        \izi\models\SiteConfigs::updateData($items, $conditions, true);
+=======
+	        \app\models\SiteConfigs::updateData($items, $conditions, true);
+>>>>>>> release/1.0
 	    }
 	    
 	    
@@ -205,7 +221,11 @@ class Language extends \yii\base\Component
 	    
 	   
 	    
+<<<<<<< HEAD
 	    \izi\models\SiteConfigs::updateData($items, $conditions, true);
+=======
+	    \app\models\SiteConfigs::updateData($items, $conditions, true);
+>>>>>>> release/1.0
 	}
 	
 	/**
@@ -233,7 +253,11 @@ class Language extends \yii\base\Component
 	        ];
 	        
 	        
+<<<<<<< HEAD
 	        \izi\models\SiteConfigs::updateData($items, $conditions, true);
+=======
+	        \app\models\SiteConfigs::updateData($items, $conditions, true);
+>>>>>>> release/1.0
 	    }
 	    
 	    
@@ -245,7 +269,11 @@ class Language extends \yii\base\Component
 	 * refresh languge (updated)
 	 */
 	public function refresh(){
+<<<<<<< HEAD
 	    $l = \izi\models\SiteConfigs::getConfigs($this->identity, null, __SID__, false);
+=======
+	    $l = \app\models\SiteConfigs::getConfigs($this->identity, null, __SID__, false);
+>>>>>>> release/1.0
 	   
 	    $items = [];
 	    $df = 0;
@@ -294,10 +322,17 @@ class Language extends \yii\base\Component
 	        'lang'=>SYSTEM_LANG
 	    ];
 	     
+<<<<<<< HEAD
 	     
 	    \izi\models\SiteConfigs::updateData($items, $conditions, true);
 	}
 	  
+=======
+	    
+	    \app\models\SiteConfigs::updateData($items, $conditions, true);
+	}
+	
+>>>>>>> release/1.0
 	
 	/**
 	 * set default language (first setup)
@@ -322,7 +357,11 @@ class Language extends \yii\base\Component
         ];
          
         
+<<<<<<< HEAD
         \izi\models\SiteConfigs::updateData($items, $conditions);
+=======
+        \app\models\SiteConfigs::updateData($items, $conditions);
+>>>>>>> release/1.0
         
         
         return SYSTEM_LANG;
