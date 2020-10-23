@@ -297,7 +297,7 @@ class Language extends \yii\base\Component
 	     
 	    \izi\models\SiteConfigs::updateData($items, $conditions, true);
 	}
-	 
+	  
 	
 	/**
 	 * set default language (first setup)
