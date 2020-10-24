@@ -28,7 +28,7 @@
 	},
 	"autoload" : {
 		"psr-4" : {
-			"izi\\language\\" : "src"
+			"izi\\language\\" : ""
 		}
 	},
 	"homepage" : "https://iziweb.net"	
