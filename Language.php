@@ -2,6 +2,7 @@
 namespace izi\language;
 
 use Yii;
+use izi\models\SiteConfigs;
 
 class Language extends \yii\base\Component
 
@@ -19,7 +20,7 @@ class Language extends \yii\base\Component
     
     public function getDefault(){
         
-        $l = \app\models\SiteConfigs::getConfigs($this->identity, null, __SID__);
+        $l = SiteConfigs::getConfigs($this->identity, null, __SID__);
         
         if(!empty($l)){
             foreach ($l as $v){
@@ -36,7 +37,7 @@ class Language extends \yii\base\Component
 	*/
 	
 	public function getItem($code, $fetchArray = false){
-		$l = \app\models\SiteConfigs::getConfigs($this->identity, null, __SID__);
+		$l = SiteConfigs::getConfigs($this->identity, null, __SID__);
  
 		
         if(!empty($l)){
@@ -126,7 +127,7 @@ class Language extends \yii\base\Component
 	 * get all defined language for single site
 	 */
 	public function getDefinedLanguage(){ 
-	    return \app\models\SiteConfigs::getConfigs($this->identity, null, __SID__, false);
+	    return SiteConfigs::getConfigs($this->identity, null, __SID__, false);
 	}
     
 	/**
@@ -159,7 +160,7 @@ class Language extends \yii\base\Component
 	        ];
 	        
 	        
-	        \app\models\SiteConfigs::updateData($items, $conditions, true);
+	        SiteConfigs::updateData($items, $conditions, true);
 	    }
 	    
 	    
@@ -205,7 +206,7 @@ class Language extends \yii\base\Component
 	    
 	   
 	    
-	    \app\models\SiteConfigs::updateData($items, $conditions, true);
+	    SiteConfigs::updateData($items, $conditions, true);
 	}
 	
 	/**
@@ -233,7 +234,7 @@ class Language extends \yii\base\Component
 	        ];
 	        
 	        
-	        \app\models\SiteConfigs::updateData($items, $conditions, true);
+	        SiteConfigs::updateData($items, $conditions, true);
 	    }
 	    
 	    
@@ -245,7 +246,7 @@ class Language extends \yii\base\Component
 	 * refresh languge (updated)
 	 */
 	public function refresh(){
-	    $l = \app\models\SiteConfigs::getConfigs($this->identity, null, __SID__, false);
+	    $l = SiteConfigs::getConfigs($this->identity, null, __SID__, false);
 	   
 	    $items = [];
 	    $df = 0;
@@ -295,7 +296,7 @@ class Language extends \yii\base\Component
 	    ];
 	     
 	    
-	    \app\models\SiteConfigs::updateData($items, $conditions, true);
+	    SiteConfigs::updateData($items, $conditions, true);
 	}
 	
 	
@@ -322,7 +323,7 @@ class Language extends \yii\base\Component
         ];
          
         
-        \app\models\SiteConfigs::updateData($items, $conditions);
+        SiteConfigs::updateData($items, $conditions);
         
         
         return SYSTEM_LANG;
