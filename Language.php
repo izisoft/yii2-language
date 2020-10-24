@@ -18,13 +18,8 @@ class Language extends \yii\base\Component
     }
     
     public function getDefault(){
-        
-<<<<<<< HEAD
-        $l = \izi\models\SiteConfigs::getConfigs($this->identity, null, __SID__);
-=======
-        $l = \app\models\SiteConfigs::getConfigs($this->identity, null, __SID__);
->>>>>>> release/1.0
-        
+     
+		$l = \izi\models\SiteConfigs::getConfigs($this->identity, null, __SID__); 
         if(!empty($l)){
             foreach ($l as $v){
                 if(isset($v['is_default']) && $v['is_default'] == 1){
@@ -40,11 +35,9 @@ class Language extends \yii\base\Component
 	*/
 	
 	public function getItem($code, $fetchArray = false){
-<<<<<<< HEAD
+ 
 	    $l = \izi\models\SiteConfigs::getConfigs($this->identity, null, __SID__);
-=======
-		$l = \app\models\SiteConfigs::getConfigs($this->identity, null, __SID__);
->>>>>>> release/1.0
+ 
  
 		
         if(!empty($l)){
@@ -133,12 +126,8 @@ class Language extends \yii\base\Component
 	/**
 	 * get all defined language for single site
 	 */
-	public function getDefinedLanguage(){ 
-<<<<<<< HEAD
-	    return \izi\models\SiteConfigs::getConfigs($this->identity, null, __SID__, false);
-=======
-	    return \app\models\SiteConfigs::getConfigs($this->identity, null, __SID__, false);
->>>>>>> release/1.0
+	public function getDefinedLanguage(){  
+	    return \izi\models\SiteConfigs::getConfigs($this->identity, null, __SID__, false); 
 	}
     
 	/**
@@ -170,12 +159,9 @@ class Language extends \yii\base\Component
 	            'lang'=>SYSTEM_LANG
 	        ];
 	        
-	        
-<<<<<<< HEAD
-	        \izi\models\SiteConfigs::updateData($items, $conditions, true);
-=======
+ 
 	        \app\models\SiteConfigs::updateData($items, $conditions, true);
->>>>>>> release/1.0
+ 
 	    }
 	    
 	    
@@ -218,14 +204,9 @@ class Language extends \yii\base\Component
 	        'sid'=>__SID__,
 	        'lang'=>SYSTEM_LANG
 	    ];
-	    
-	   
-	    
-<<<<<<< HEAD
-	    \izi\models\SiteConfigs::updateData($items, $conditions, true);
-=======
-	    \app\models\SiteConfigs::updateData($items, $conditions, true);
->>>>>>> release/1.0
+		
+		\izi\models\SiteConfigs::updateData($items, $conditions, true);
+ 
 	}
 	
 	/**
@@ -251,13 +232,8 @@ class Language extends \yii\base\Component
 	            'sid'=>__SID__,
 	            'lang'=>SYSTEM_LANG
 	        ];
-	        
-	        
-<<<<<<< HEAD
-	        \izi\models\SiteConfigs::updateData($items, $conditions, true);
-=======
-	        \app\models\SiteConfigs::updateData($items, $conditions, true);
->>>>>>> release/1.0
+	        	        
+	        \izi\models\SiteConfigs::updateData($items, $conditions, true); 
 	    }
 	    
 	    
@@ -269,12 +245,7 @@ class Language extends \yii\base\Component
 	 * refresh languge (updated)
 	 */
 	public function refresh(){
-<<<<<<< HEAD
-	    $l = \izi\models\SiteConfigs::getConfigs($this->identity, null, __SID__, false);
-=======
-	    $l = \app\models\SiteConfigs::getConfigs($this->identity, null, __SID__, false);
->>>>>>> release/1.0
-	   
+		$l = \app\models\SiteConfigs::getConfigs($this->identity, null, __SID__, false);
 	    $items = [];
 	    $df = 0;
 	    foreach ($l as $k => $item) {
@@ -320,19 +291,12 @@ class Language extends \yii\base\Component
 	        'code'=>$this->identity,
 	        'sid'=>__SID__,
 	        'lang'=>SYSTEM_LANG
-	    ];
-	     
-<<<<<<< HEAD
-	     
-	    \izi\models\SiteConfigs::updateData($items, $conditions, true);
-	}
-	  
-=======
+	    ];	     
 	    
 	    \app\models\SiteConfigs::updateData($items, $conditions, true);
 	}
 	
->>>>>>> release/1.0
+ 
 	
 	/**
 	 * set default language (first setup)
@@ -356,14 +320,8 @@ class Language extends \yii\base\Component
             'lang'=>SYSTEM_LANG
         ];
          
-        
-<<<<<<< HEAD
-        \izi\models\SiteConfigs::updateData($items, $conditions);
-=======
-        \app\models\SiteConfigs::updateData($items, $conditions);
->>>>>>> release/1.0
-        
-        
+        \izi\models\SiteConfigs::updateData($items, $conditions); 
+                
         return SYSTEM_LANG;
     }
     
