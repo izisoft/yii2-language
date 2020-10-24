@@ -9,7 +9,7 @@ class Translate extends \yii\base\Component
 {
 
     /**
-     * 
+     * Translate text with lang code
      */
     public function translate($lang_code, $lang = __LANG__, $options = [])
     {
@@ -18,7 +18,7 @@ class Translate extends \yii\base\Component
     }
 
     /**
-     * 
+     * translate text use google translate by rapidapi
      */
     public function googleTranslate($q, $source, $target){
 	    /**
